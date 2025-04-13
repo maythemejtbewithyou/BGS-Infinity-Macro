@@ -14,3 +14,6 @@
 ## Every island unlocked
 ## Speed shouldnt matter, atleast past tier 13 of buffs (What im at)
 ## Fast Travel
+
+# Added this update
+### Angle detection for gem & coin farm. 

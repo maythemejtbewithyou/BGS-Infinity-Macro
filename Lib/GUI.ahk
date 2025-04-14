@@ -138,6 +138,7 @@ ShowSettingsGUI(*) {
     global DiscordUserIDBox := SettingsGUI.Add("Edit", "x320 y103 w260 h20 c" uiTheme[6])  ; Store Discord ID
     DiscordUserIDBox.Visible := false
     global SendActivityLogsBox := SettingsGUI.Add("Checkbox", "x320 y135 c" uiTheme[1], "Send Process")  ; Enable Activity
+    SendActivityLogsBox.Visible := false
 
     ; HotKeys
     SettingsGUI.Add("GroupBox", "x10 y90 w160 h160 c" uiTheme[1], "Keybinds")

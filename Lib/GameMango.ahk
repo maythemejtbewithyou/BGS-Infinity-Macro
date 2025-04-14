@@ -18,7 +18,7 @@ F1:: moveRobloxWindow()
 F2:: StartMacro()
 F3:: Reload()
 F4:: TogglePause()
-F5:: ClearLeftRight2()
+F5:: SendCoinsWebhook()
 
 Teleport() {
     SendInput("{m}")
@@ -683,8 +683,15 @@ stuff() {
 }
 
 SendCoinsWebhook() {
+    global WebhookURL
+
+    WebhookURL := FileRead(WebhookURLFile, "UTF-8")
+    if !(WebhookURL ~= 'i)https?:\/\/discord\.com\/api\/webhooks\/(\d{18,19})\/[\w-]{68}') {
+        return
+    }
+
     static webhook := WebHookBuilder(
-        "https://discord.com/api/webhooks/1361144761402134548/OZKCwPhWdgkpnYfA9kBxYP_a30Rh-EqmMM4ZMxe1wJOsrogb74k5W6YTfjqtzRZgY_Ly"
+        WebhookURL
     )
     captureRect := "7|390|195|65"  ; Left|Top|Width|Height
 
@@ -871,7 +878,7 @@ ClaimChests2() {
             Sleep 2000
             FixClick(400, 556)
             Sleep 2000
-    
+
             Send("{w down}")
             Sleep 551
             Send("{w up}")
@@ -939,297 +946,297 @@ ClearLeftRight2() {
     Sleep 279
     Send("{s up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 286
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 646
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 262
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 445
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 278
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 574
     Send("{s up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 222
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 366
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 582
     Send("{w up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 358
     Send("{a up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 558
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 158
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 237
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 222
     Send("{w up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 870
     Send("{a up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 152
     Send("{s up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 317
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 253
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 427
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 407
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 117
     Send("{s up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 119
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 117
     Send("{s up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 141
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 509
     Send("{s up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 765
     Send("{a up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 799
     Send("{s up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 454
     Send("{a up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 493
     Send("{s up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 2765
     Send("{a up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 332
     Send("{a up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 973
     Send("{w up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 182
     Send("{a up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 574
     Send("{s up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 270
     Send("{w up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 629
     Send("{a up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 692
     Send("{w up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 173
     Send("{a up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 965
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 340
     Send("{s up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 165
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 188
     Send("{s up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 789
     Send("{a up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 196
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 605
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 244
     Send("{w up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 604
     Send("{a up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 348
     Send("{w up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 237
     Send("{a up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 396
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 209
     Send("{d up}")
     Sleep 200
-    
+
     Send("{w down}")
     Sleep 140
     Send("{w up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 380
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 483
     Send("{s up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 173
     Send("{d up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 553
     Send("{s up}")
     Sleep 200
-    
+
     Send("{a down}")
     Sleep 132
     Send("{a up}")
     Sleep 200
-    
+
     Send("{s down}")
     Sleep 412
     Send("{s up}")
     Sleep 200
-    
+
     Send("{d down}")
     Sleep 245
     Send("{d up}")

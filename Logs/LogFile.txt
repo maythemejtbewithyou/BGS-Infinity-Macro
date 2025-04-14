@@ -270,3 +270,9 @@ Invalid webhook URL - skipping webhook
   Start Time: [18h.30m.49s]
 Saving Webhook Configuration 
 Saving Webhook Configuration 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [18h.33m.07s]
+Saving Webhook Configuration 
+Saving Webhook Configuration 
+Saving Webhook Configuration 

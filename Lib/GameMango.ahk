@@ -18,7 +18,7 @@ F1:: moveRobloxWindow()
 F2:: StartMacro()
 F3:: Reload()
 F4:: TogglePause()
-F5:: ClaimChests()
+F5:: ClearLeftRight2()
 
 Teleport() {
     SendInput("{m}")
@@ -627,9 +627,85 @@ setstuff() {
     Zoom()
 }
 
+SkipRoll() {
+    Sleep 500
+    FixClick(399, 354)
+    Sleep 1500
+}
+
+OpenAllBoxes() {
+    FixClick(39, 230)
+    Sleep 1500
+    ; Open first
+    FixClick(199, 227)
+    SkipRoll()
+    ; Open second
+    FixClick(279, 227)
+    SkipRoll()
+    ; Open third
+    FixClick(359, 288)
+    SkipRoll()
+    ; Open fourth
+    FixClick(441, 230)
+    SkipRoll()
+    ; Open fifth
+    FixClick(232, 318)
+    SkipRoll()
+    ; Open sixth
+    FixClick(318, 319)
+    SkipRoll()
+    ; Open seventh
+    FixClick(410, 317)
+    SkipRoll()
+    ; Open eighth
+    FixClick(247, 423)
+    SkipRoll()
+    ; Open ninth
+    FixClick(393, 417)
+    SkipRoll()
+
+    Sleep 1500
+    FixClick(634, 134)
+
+    ClaimBoxesAvailable := false
+    ProcessLog("All boxes claimed. Resetting cooldown.")
+    SetTimer(ResetClaimTimer, -7500000)
+}
+
+ResetClaimTimer() {
+    global ClaimBoxesAvailable
+    ClaimBoxesAvailable := true
+    ProcessLog("Time rewards available again!")
+}
+
+stuff() {
+
+}
+
+SendCoinsWebhook() {
+    static webhook := WebHookBuilder(
+        "https://discord.com/api/webhooks/1361144761402134548/OZKCwPhWdgkpnYfA9kBxYP_a30Rh-EqmMM4ZMxe1wJOsrogb74k5W6YTfjqtzRZgY_Ly"
+    )
+    captureRect := "7|390|195|65"  ; Left|Top|Width|Height
+
+    pToken := Gdip_Startup()
+    pBitmap := Gdip_BitmapFromScreen(captureRect)
+
+    embed := EmbedBuilder()
+    .setTitle("Current Coins")
+    .setImage(AttachmentBuilder(pBitmap))
+
+    webhook.send({
+        embeds: [embed],
+        files: [AttachmentBuilder(pBitmap)]
+    })
+
+    Gdip_DisposeImage(pBitmap)
+    Gdip_Shutdown(pToken)
+}
+
 ClaimChests() {
     global ClaimAvailable, ChestCooldown
-
     if (AutoAbilityBox.Value) {
         ProcessLog("Claiming chests...")
 
@@ -641,32 +717,36 @@ ClaimChests() {
             Sleep 1000
         }
 
+        ProcessLog("Island Reached")
         FixClick(400, 555)
         Sleep 2500
-        SendInput("{w down}")
-        Sleep 343
-        SendInput("{w up}")
+        Send("{s down}")
+        Sleep 991
+        Send("{s up}")
+        Sleep 1000
+        FixClick(463, 230)
+        Sleep 1000
+        Send("{w down}")
+        Sleep 1118
+        Send("{w up}")
         Sleep 200
-        SendInput("{d down}")
-        Sleep 511
-        SendInput("{d up}")
+        Send("{d down}")
+        Sleep 774
+        Send("{d up}")
         Sleep 200
-        SendInput("{s down}")
-        SendInput("{d down}")
-        Sleep 640
-        SendInput("{s up}")
-        SendInput("{d up}")
-        Sleep 200
-        SendInput("{s down}")
-        Sleep 495
-        SendInput("{s up}")
-        Sleep 200
-        SendInput("{e down}")
-        Sleep 174
-        SendInput("{e up}")
+        Send("{s down}")
+        Sleep 791
+        Send("{s up}")
         SLeep 1500
+
+        Send("{e down}")
+        Sleep 70
+        Send("{e up}")
+
+        SendCoinsWebhook()
+
         ; Set cooldown
-        ClaimAvailable := false
+        global ClaimAvailable := false
         ProcessLog("Chest claimed. Cooldown started.")
 
         ; Set timer to reset availability
@@ -779,8 +859,49 @@ ClaimChests2() {
         Sleep 70
         Send("{e up}")
 
+        ; vip chest
+
+        if (VIPChestBox.Value) {
+            SendInput("{m}")
+            Sleep 2000
+            loop 20 {
+                FixClick(649, 469)
+                Sleep 10
+            }
+            Sleep 2000
+            FixClick(400, 556)
+            Sleep 2000
+    
+            Send("{w down}")
+            Sleep 551
+            Send("{w up}")
+            Sleep 200
+            Send("{d down}")
+            Sleep 4135
+            Send("{d up}")
+            Sleep 200
+            Send("{s down}")
+            Sleep 158
+            Send("{s up}")
+            Sleep 200
+            Send("{d down}")
+            Sleep 1093
+            Send("{d up}")
+            Sleep 200
+            Send("{s down}")
+            Sleep 230
+            Send("{s up}")
+            Sleep 200
+            Send("{d down}")
+            Sleep 662
+            Send("{d up}")
+            Sleep 200
+            Send("{e down}")
+            Send("{e up}")
+        }
+
         ; Set cooldown
-        Claim2Available := false
+        global Claim2Available := false
         ProcessLog("Chest 2 claimed. Cooldown started.")
 
         ; Set timer to reset availability
@@ -806,6 +927,314 @@ global ChestCooldown := 1200000 ; 20 minutes
 global Claim2Available := true
 global Chest2Cooldown := 2400000 ; 40 minutes
 
+global ClaimBoxesAvailable := false
+SetTimer(TurnOnAvailability, -7500000)
+
+TurnOnAvailability() {
+    global ClaimBoxesAvailable := true
+}
+
+ClearLeftRight2() {
+    Send("{s down}")
+    Sleep 279
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 286
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 646
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 262
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 445
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 278
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 574
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 222
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 366
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 582
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 358
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 558
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 158
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 237
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 222
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 870
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 152
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 317
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 253
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 427
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 407
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 117
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 119
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 117
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 141
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 509
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 765
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 799
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 454
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 493
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 2765
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 332
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 973
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 182
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 574
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 270
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 629
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 692
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 173
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 965
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 340
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 165
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 188
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 789
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 196
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 605
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 244
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 604
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 348
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 237
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 396
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 209
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{w down}")
+    Sleep 140
+    Send("{w up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 380
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 483
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 173
+    Send("{d up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 553
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{a down}")
+    Sleep 132
+    Send("{a up}")
+    Sleep 200
+    
+    Send("{s down}")
+    Sleep 412
+    Send("{s up}")
+    Sleep 200
+    
+    Send("{d down}")
+    Sleep 245
+    Send("{d up}")
+}
+
 LegendMode() {
     global LegendDropdown
 
@@ -827,10 +1256,21 @@ LegendMode() {
             SendInput ("{Right down}")
             Sleep 750
             SendInput ("{Right up}")
-        }
 
-        if (ok := FindText(&X, &Y, 535 - 150000, 382 - 150000, 535 + 150000, 382 + 150000, 0, 0, CoinsAngle3)) {
-            
+            loop {
+                ClearLeftRight2()
+                Sleep 1500
+                if (ClaimAvailable) {
+                    ClaimChests()
+                }
+                if (Claim2Available) {
+                    ClaimChests2()
+                }
+                if (ClaimBoxesAvailable) {
+                    OpenAllBoxes()
+                }
+                TeleportTopMap()
+            }
         }
 
         loop {
@@ -841,6 +1281,9 @@ LegendMode() {
             }
             if (Claim2Available) {
                 ClaimChests2()
+            }
+            if (ClaimBoxesAvailable) {
+                OpenAllBoxes()
             }
             TeleportTopMap()
         }

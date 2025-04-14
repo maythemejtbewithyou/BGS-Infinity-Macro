@@ -135,8 +135,8 @@ ShowSettingsGUI(*) {
     SettingsGUI.SetFont("s9", "Verdana")
     SettingsGUI.Add("Text", "x320 y30 c" uiTheme[1], "Webhook URL")     ; Webhook Text
     global WebhookURLBox := SettingsGUI.Add("Edit", "x320 y50 w260 h20 c" uiTheme[6])  ; Store webhook
-    SettingsGUI.Add("Text", "x320 y83 c" uiTheme[1], "Discord ID (optional)")  ; Discord Id Text
     global DiscordUserIDBox := SettingsGUI.Add("Edit", "x320 y103 w260 h20 c" uiTheme[6])  ; Store Discord ID
+    DiscordUserIDBox.Visible := false
     global SendActivityLogsBox := SettingsGUI.Add("Checkbox", "x320 y135 c" uiTheme[1], "Send Process")  ; Enable Activity
 
     ; HotKeys
@@ -151,14 +151,8 @@ ShowSettingsGUI(*) {
     global F4Box := SettingsGUI.Add("Edit", "x110 y200 w30 h20 c" uiTheme[6], F4Key)
     global F5Box := SettingsGUI.Add("Edit", "x110 y200 w30 h20 c" uiTheme[6], F5Key)
 
-    ; Banner section
-    SettingsGUI.Add("GroupBox", "x310 y175 w280 h100 c" uiTheme[1], "Banner Checker")  ; Box
-    SettingsGUI.Add("Text", "x320 y195 c" uiTheme[1], "Banner Unit Name (Adding later)")  ; Banner Text
-
-    ; Private Server section
-    SettingsGUI.Add("GroupBox", "x310 y280 w280 h100 c" uiTheme[1], "PS Link")  ; Box
-    SettingsGUI.Add("Text", "x320 y300 c" uiTheme[1], "Private Server Link (optional)")  ; Ps text
     global PsLinkBox := SettingsGUI.Add("Edit", "x320 y320 w260 h20 c" uiTheme[6])  ;  ecit box
+    PsLinkBox.Visible := false
 
     SettingsGUI.Add("GroupBox", "x10 y10 w115 h70 c" uiTheme[1], "UI Navigation")
     SettingsGUI.Add("Text", "x20 y30 c" uiTheme[1], "Navigation Key")
@@ -172,6 +166,7 @@ ShowSettingsGUI(*) {
     keybindSaveBtn.OnEvent("Click", SaveKeybindSettings)
 
     PsSaveBtn := SettingsGUI.Add("Button", "x460 y345 w120 h25", "Save PsLink")
+    PsSaveBtn.Visible := false
     PsSaveBtn.OnEvent("Click", (*) => SavePsSettings())
 
     UINavSaveBtn := SettingsGUI.Add("Button", "x50 y50 w60 h20", "Save")
@@ -221,7 +216,6 @@ OpenGuide(*) {
 
 aaMainUI.SetFont("s12 Bold c" uiTheme[1])
 global settingsBtn := aaMainUI.Add("Button", "x1160 y0 w90 h30", "Settings")
-settingsBtn.Visible := false
 settingsBtn.OnEvent("Click", ShowSettingsGUI)
 global guideBtn := aaMainUI.Add("Button", "x1060 y0 w90 h30", "Guide")
 guideBtn.Visible := false
@@ -231,7 +225,8 @@ aaMainUI.SetFont("s9")
 global NextLevelBox := aaMainUI.Add("Checkbox", "x900 y385 cffffff Checked", "Placeholder4")
 global MatchMaking := aaMainUI.Add("Checkbox", "x1035 y385 cffffff Hidden Checked", "Placeholder3")
 global ReturnLobbyBox := aaMainUI.Add("Checkbox", "x900 y385 cffffff Checked", "Placeholder2")
-global AutoAbilityBox := aaMainUI.Add("CheckBox", "x805 y410 cffffff Checked", "Auto-claim Chest (Only for Coins and Gems)")
+global AutoAbilityBox := aaMainUI.Add("CheckBox", "x805 y410 cffffff Checked", "Auto-claim Chest and ticket (Only for Coins and Gems)")
+global VIPChestBox := aaMainUI.Add("CheckBox", "x805 y390 cffffff Checked", "Auto-claim VIP chest (Autoclaim chest enabled required)")
 global PriorityUpgrade := aaMainUI.Add("CheckBox", "x1005 y410 cffffff", "Placeholder6")
 PriorityUpgrade.Visible := false
 global SaveChestsBox := aaMainUI.Add("CheckBox", "x900 y385 cffffff Checked", "Placeholder5")

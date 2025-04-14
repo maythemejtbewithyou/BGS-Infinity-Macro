@@ -16,4 +16,7 @@
 ## Fast Travel
 
 # Added this update
-### Angle detection for gem & coin farm. 
+### vip chest claiming (option)
+### other spawn angle should be completely fixed now
+### coin webhook (specifically sends when u claim a chest, ur probably gonna have it on anyway)
+### auto claims ticket when claiming first island chest

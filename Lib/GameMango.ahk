@@ -6,6 +6,22 @@
 #Include Functions.ahk
 #Include webhooksettings.ahk
 
+; Enchants
+LooterV :=
+    "|<>*134$65.0000000000000000000000E0000000E41s000w001sw6E0038004F4AUC3aMsyAqMN1zTszzy8cUm63UUMA4Fl1YM200UM8F438X0laAHkW86F71nA1Y0UUAz4F6Qz8110M21UQ86E140k67VgsAU3M0zztyDTz03U000000000000000000000000000000000U"
+GleamingIII :=
+    "|<>*136$84.000000000000000000000000000000000000000000000000000000000CD00003k0014E0zz00007k003zw1zz00007k007zw3zzD1hgrqkT7zw7zzTrzzzzxzbzw7zzzzzzzzzzbzw7zzzzzzzzzzbzw7zzzzzzzzzzbzw7zzzzzzzzzzbzw3zzzzzzzzzzbzw3zzzzzzzzzzbzw1zzzzzzzzzzbzw0zjzrzzzzTzXzw0000000003z0000000000003z0000000000001y000U"
+LooterIV :=
+    "|<>*133$71.000000000000000000000000000000000000000000000U80w000S000zls38001Y0038W86E71nAQT6NgkAUzjwTzzAlF0N31kEA62NXW0mA100EA4nW81YFUMn69tZ4E38XUta0m39106TW8XCTY6G20A10kC438AW80M33kqQ6EN6k0Tzwz7jzUS70000000000000000000000000000000000001"
+BubblerV :=
+    "|<>*128$71.0000000000000000000000007U0sC3U00410zk3MqAU00SD30k6FYN001YH60wQnAmCBXBaAtxtyTZzzWP8NnCEQ7C316Qkm6QUM6M624t1aAtAH4nAwAa3CNmQb9UN0886Ql4F4HDm0MkA1U861W1Y0F0M7mGQba380q0Tszzjtzzk0s000000000000000000000000000000000000U"
+BubblerIV :=
+    "|<>*126$70.00000000000000000000000000000000000000000000000000000000003U0Q71k00082zk38mAU00Tsy1UAX8m003AWM3lnAn8sqAmNbDjDnwjzwnB6QnY71nUkHCQt3CEA3A31AtmaAtAH4n4wmmOQHYtCH0m3919n4F4FAz8AaAUA10kAEAUm8W1wY71tUm38qDwTzrwzzs7Vk00000000000000000000000000000000000U"
+TeamupIV :=
+    "|<>*130$84.000000000000003z00000000010EDzk0000DD00zls80E0000N9U1aFAA0z1BckN8u1aPA7bzrzzsN8zVaO80akQ22AN8UlbCM0bUM204N8UNbCE0ba9WNaN9a9ZYk0bUNWNaNta9YUU0bbs2Na8lUNYlU0aUM2NaA3UFYF00YkQKNa67ZlYP00wTrzzw3xb0wC0000000001Y0000000000001Y0000000000000w000000000000000000U"
+TeamupV :=
+    "|<>*133$81.00000000000000000000000000000000000000000000000000000000000000000001zk00002100820zz00000wy03ls4080000AYk0m9Uk3w6qn1Ybc6PA3nzvzzwAYzkHN02P1k88lYa33CM0HkA102AYkA9m02SNa9aNYaMVYk0HkAlAnAwn44402STW9aMX61UlU0HEA1An61k82802P1lNaMMSL0P00SDvzzy1ynU1k0000000006E000000000000m0000000000003k00000000000000000U"
+
 global macroStartTime := A_TickCount
 global stageStartTime := A_TickCount
 global contractPageCounter := 0
@@ -18,7 +34,7 @@ F1:: moveRobloxWindow()
 F2:: StartMacro()
 F3:: Reload()
 F4:: TogglePause()
-F5:: SendCoinsWebhook()
+F5:: stuff()
 
 Teleport() {
     SendInput("{m}")
@@ -618,7 +634,6 @@ CloseLeaderboard() {
     if (!ok := FindText(&X, &Y, 758 - 150000, 361 - 150000, 758 + 150000, 361 + 150000, 0, 0, LeaderboardEnabledCheck)) {
         SendInput ("{Tab}")
     }
-
 }
 
 setstuff() {
@@ -679,7 +694,7 @@ ResetClaimTimer() {
 }
 
 stuff() {
-
+   
 }
 
 SendCoinsWebhook() {
@@ -1340,6 +1355,83 @@ LegendMode() {
         Sleep 1000
 
         StartHatching()
+    }
+}
+
+EnchantMode() {
+    global EnchantsDropdown, EnchantModeDropdown
+
+    loop {
+        if (EnchantModeDropdown.Text) = "Gems" {
+            FixClick(178, 504)
+        } else {
+            FixClick(230, 431)
+        }
+
+        Sleep 150
+        if (EnchantsDropdown.Text) = "Teamup IV" {
+            if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, TeamupIV)) {
+                ProcessLog("Found " . EnchantsDropdown.Text)
+                break
+            }
+        }
+        if (EnchantsDropdown.Text) = "Team up V" {
+            if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, TeamupV)) {
+                ProcessLog("Found " . EnchantsDropdown.Text)
+                break
+            }
+
+            if (EnchantTierBox.Value) {
+                if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, TeamupIV)) {
+                    ProcessLog("Stopping at Teamup IV, due to being 1 tier lower")
+                    break
+                }
+            }
+        }
+        if (EnchantsDropdown.Text) = "Looter IV" {
+            if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, LooterIV)) {
+                ProcessLog("Found " . EnchantsDropdown.Text)
+                break
+            }
+        }
+        if (EnchantsDropdown.Text) = "Looter V" {
+            if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, LooterV)) {
+                ProcessLog("Found " . EnchantsDropdown.Text)
+                break
+            }
+
+            if (EnchantTierBox.Value) {
+                if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, LooterIV)) {
+                    ProcessLog("Stopping at Looter IV, due to being 1 tier lower")
+                    break
+                }
+            }
+        }
+        if (EnchantsDropdown.Text) = "Bubbler IV" {
+            if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, BubblerIV)) {
+                ProcessLog("Found " . EnchantsDropdown.Text)
+                break
+            }
+        }
+        if (EnchantsDropdown.Text) = "Bubbler V" {
+            if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, BubblerV)) {
+                ProcessLog("Found " . EnchantsDropdown.Text)
+                break
+            }
+
+            if (EnchantTierBox.Value) {
+                if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, BubblerIV)) {
+                    ProcessLog("Stopping at Bubbler IV, due to being 1 tier lower")
+                    break
+                }
+            }
+        }
+        if (EnchantsDropdown.Text) = "Gleaming III" {
+            if (ok := FindText(&X, &Y, 94, 353, 264, 514, 0, 0, GleamingIII)) {
+                ProcessLog("Found " . EnchantsDropdown.Text)
+                break
+            }
+        }
     }
 }
 
@@ -2317,6 +2409,9 @@ StartSelectedMode() {
     }
     else if (ModeDropdown.Text = "Farm") {
         LegendMode()
+    }
+    else if (ModeDropdown.Text = "Reroll Enchants") {
+        EnchantMode()
     }
     else if (ModeDropdown.Text = "Raid") {
         RaidMode()

@@ -4,13 +4,12 @@
 #Include webhooksettings.ahk
 #Include OCR-main\Lib\OCR.ahk
 
-global settingsFile := "" 
+global settingsFile := ""
 global confirmClicked := false
-
 
 setupFilePath() {
     global settingsFile
-    
+
     if !DirExist(A_ScriptDir "\Settings") {
         DirCreate(A_ScriptDir "\Settings")
     }
@@ -19,63 +18,58 @@ setupFilePath() {
     return settingsFile
 }
 
-
-
 SavePsSettings(*) {
     ProcessLog("Saving Private Server")
-    
+
     if FileExist("Settings\PrivateServer.txt")
         FileDelete("Settings\PrivateServer.txt")
-    
+
     FileAppend(PsLinkBox.Value, "Settings\PrivateServer.txt", "UTF-8")
 }
 
 SaveUINavSettings(*) {
     ProcessLog("Saving UI Navigation Key")
-    
+
     if FileExist("Settings\UINavigation.txt")
         FileDelete("Settings\UINavigation.txt")
-    
+
     FileAppend(UINavBox.Value, "Settings\UINavigation.txt", "UTF-8")
 }
 
 ;Opens discord Link
 OpenDiscordLink() {
     Run("https://discord.gg/mistdomain")
- }
- 
- ;Minimizes the UI
- minimizeUI(*){
+}
+
+;Minimizes the UI
+minimizeUI(*) {
     aaMainUI.Minimize()
- }
- 
- Destroy(*){
+}
+
+Destroy(*) {
     aaMainUI.Destroy()
     ExitApp
- }
- ;Login Text
- setupOutputFile() {
-     content := "`n==" aaTitle "" version "==`n  Start Time: [" currentTime "]`n"
-     FileAppend(content, currentOutputFile)
- }
- 
- ;Gets the current time
- getCurrentTime() {
-     currentHour := A_Hour
-     currentMinute := A_Min
-     currentSecond := A_Sec
- 
-     return Format("{:d}h.{:02}m.{:02}s", currentHour, currentMinute, currentSecond)
- }
+}
+;Login Text
+setupOutputFile() {
+    content := "`n==" aaTitle "" version "==`n  Start Time: [" currentTime "]`n"
+    FileAppend(content, currentOutputFile)
+}
 
+;Gets the current time
+getCurrentTime() {
+    currentHour := A_Hour
+    currentMinute := A_Min
+    currentSecond := A_Sec
 
+    return Format("{:d}h.{:02}m.{:02}s", currentHour, currentMinute, currentSecond)
+}
 
- OnModeChange(*) {
+OnModeChange(*) {
     global mode
     selected := ModeDropdown.Text
-    
+
     ; Hide all dropdowns first
-    AutoAbilityBox.Visible := false
     StoryDropdown.Visible := false
     LegendDropDown.Visible := false
     RaidDropdown.Visible := false
@@ -83,21 +77,29 @@ OpenDiscordLink() {
     InfinityCastleDropdown.Visible := false
     MatchMaking.Visible := false
     ReturnLobbyBox.Visible := false
-    ContractPageDropdown.Visible := false  
-    ContractJoinDropdown.Visible := false 
-    
+    ContractPageDropdown.Visible := false
+    ContractJoinDropdown.Visible := false
+
     if (selected = "Hatch Eggs") {
         StoryDropdown.Visible := true
-        AutoAbilityBox.Visible := false
+        LegendDropDown.Visible := false
+        EnchantModeDropdown.Visible := false
+        EnchantsDropdown.Visible := false
         mode := "Hatch Eggs"
     } else if (selected = "Farm") {
         LegendDropDown.Visible := true
         AutoAbilityBox.Visible := true
+        EnchantModeDropdown.Visible := false
+        EnchantsDropdown.Visible := false
+        StoryDropdown.Visible := false
         mode := "Legend"
-    } else if (selected = "Raid") {
-        RaidDropdown.Visible := true
-        RaidActDropdown.Visible := true
-        mode := "Raid"
+    } else if (selected = "Reroll Enchants") {
+        EnchantModeDropdown.Visible := true
+        EnchantsDropdown.Visible := true
+        StoryDropdown.Visible := false
+        LegendDropDown.Visible := false
+
+        mode := "Reroll Enchants"
     } else if (selected = "Infinity Castle") {
         InfinityCastleDropdown.Visible := true
         mode := "Infinity Castle"
@@ -154,13 +156,13 @@ OnConfirmClick(*) {
     }
     ; For Infinity Castle, check if mode is selected
     else if (ModeDropdown.Text = "Infinity Castle") {
-    if (InfinityCastleDropdown.Text = "") {
-        ProcessLog("Please select an Infinity Castle difficulty before confirming")
-        return
-    }
-    ProcessLog("Selected Infinity Castle - " InfinityCastleDropdown.Text)
-    MatchMaking.Visible := false  
-    ReturnLobbyBox.Visible := false
+        if (InfinityCastleDropdown.Text = "") {
+            ProcessLog("Please select an Infinity Castle difficulty before confirming")
+            return
+        }
+        ProcessLog("Selected Infinity Castle - " InfinityCastleDropdown.Text)
+        MatchMaking.Visible := false
+        ReturnLobbyBox.Visible := false
     }
     ; For Contract mode
     else if (ModeDropdown.Text = "Contract") {
@@ -175,7 +177,7 @@ OnConfirmClick(*) {
     else if (ModeDropdown.Text = "Dungeon") {
         ProcessLog("Selected Dungeon mode")
         SaveChestsBox.Visible := true  ; Show the save chests option for Dungeon mode
-    } 
+    }
     else {
         ProcessLog("Selected " ModeDropdown.Text " mode")
         MatchMaking.Visible := false
@@ -193,11 +195,12 @@ OnConfirmClick(*) {
     modeSelectionGroup.Visible := false
     ContractPageDropdown.Visible := false
     ContractJoinDropdown.Visible := false
+    EnchantModeDropdown.Visible := false
+    EnchantsDropdown.Visible := false
     Hotkeytext.Visible := true
     Hotkeytext2.Visible := true
     global confirmClicked := true
 }
-
 
 FixClick(x, y, LR := "Left") {
     MouseMove(x, y)
@@ -205,33 +208,32 @@ FixClick(x, y, LR := "Left") {
     MouseClick(LR, -1, 0, , , , "R")
     Sleep(50)
 }
- 
+
 CaptchaDetect(x, y, w, h, inputX, inputY) {
     detectionCount := 0
     ProcessLog("Checking for numbers...")
-    Loop 10 {
+    loop 10 {
         try {
-            result := OCR.FromRect(x, y, w, h, "FirstFromAvailableLanguages", 
-                {   
-                    grayscale: true,
-                    scale: 2.0
-                })
-            
+            result := OCR.FromRect(x, y, w, h, "FirstFromAvailableLanguages", {
+                grayscale: true,
+                scale: 2.0
+            })
+
             if result {
                 ; Get text before any linebreak
                 number := StrSplit(result.Text, "`n")[1]
-                
+
                 ; Clean to just get numbers
                 number := RegExReplace(number, "[^\d]")
-                
+
                 if (StrLen(number) >= 5 && StrLen(number) <= 7) {
                     detectionCount++
-                    
+
                     if (detectionCount >= 1) {
                         ; Send exactly what we detected in the green text
                         FixClick(inputX, inputY)
                         Sleep(300)
-                        
+
                         ProcessLog("Sending number: " number)
                         for digit in StrSplit(number) {
                             Send(digit)
@@ -243,7 +245,7 @@ CaptchaDetect(x, y, w, h, inputX, inputY) {
                 }
             }
         }
-        Sleep(200)  
+        Sleep(200)
     }
     ProcessLog("Could not detect valid captcha")
     return false
@@ -251,19 +253,20 @@ CaptchaDetect(x, y, w, h, inputX, inputY) {
 
 SaveKeybindSettings(*) {
     ProcessLog("Saving Keybind Configuration")
-    
+
     if FileExist("Settings\Keybinds.txt")
         FileDelete("Settings\Keybinds.txt")
-        
-    FileAppend(Format("F1={}`nF2={}`nF3={}`nF4={}", F1Box.Value, F2Box.Value, F3Box.Value, F4Box.Value, F5Box.Value), "Settings\Keybinds.txt", "UTF-8")
-    
+
+    FileAppend(Format("F1={}`nF2={}`nF3={}`nF4={}", F1Box.Value, F2Box.Value, F3Box.Value, F4Box.Value, F5Box.Value),
+    "Settings\Keybinds.txt", "UTF-8")
+
     ; Update globals
     global F1Key := F1Box.Value
     global F2Key := F2Box.Value
     global F3Key := F3Box.Value
     global F4Key := F4Box.Value
     global F5Key := F5Box.Value
-    
+
     ; Update hotkeys
     Hotkey(F1Key, (*) => moveRobloxWindow())
     Hotkey(F2Key, (*) => StartMacro())
@@ -275,7 +278,7 @@ SaveKeybindSettings(*) {
 LoadKeybindSettings() {
     if FileExist("Settings\Keybinds.txt") {
         fileContent := FileRead("Settings\Keybinds.txt", "UTF-8")
-        Loop Parse, fileContent, "`n" {
+        loop parse, fileContent, "`n" {
             parts := StrSplit(A_LoopField, "=")
             if (parts[1] = "F1")
                 global F1Key := parts[2]

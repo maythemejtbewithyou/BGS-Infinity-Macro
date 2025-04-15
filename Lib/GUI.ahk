@@ -226,8 +226,6 @@ aaMainUI.SetFont("s9")
 global NextLevelBox := aaMainUI.Add("Checkbox", "x900 y385 cffffff Checked", "Placeholder4")
 global MatchMaking := aaMainUI.Add("Checkbox", "x1035 y385 cffffff Hidden Checked", "Placeholder3")
 global ReturnLobbyBox := aaMainUI.Add("Checkbox", "x900 y385 cffffff Checked", "Placeholder2")
-global AutoAbilityBox := aaMainUI.Add("CheckBox", "x805 y410 cffffff Checked", "Auto-claim Chest and ticket (Only for Coins and Gems)")
-global VIPChestBox := aaMainUI.Add("CheckBox", "x805 y390 cffffff Checked", "Auto-claim VIP chest (Autoclaim chest enabled required)")
 global PriorityUpgrade := aaMainUI.Add("CheckBox", "x1005 y410 cffffff", "Placeholder6")
 PriorityUpgrade.Visible := false
 global SaveChestsBox := aaMainUI.Add("CheckBox", "x900 y385 cffffff Checked", "Placeholder5")
@@ -237,9 +235,17 @@ Hotkeytext2 := aaMainUI.Add("Text", "x807 y50 w530 h30", "F1:Reposition roblox w
 ;--------------MODE SELECT;--------------MODE SELECT;--------------MODE SELECT;--------------MODE SELECT;--------------MODE SELECT;--------------MODE SELECT
 global modeSelectionGroup := aaMainUI.Add("GroupBox", "x808 y38 w500 h45 Background" uiTheme[2], "Mode Select")
 aaMainUI.SetFont("s10 c" uiTheme[6])
-global ModeDropdown := aaMainUI.Add("DropDownList", "x818 y53 w140 h180 Choose0 +Center", ["Hatch Eggs", "Farm"])
+global ModeDropdown := aaMainUI.Add("DropDownList", "x818 y53 w140 h180 Choose0 +Center", ["Hatch Eggs", "Farm", "Reroll Enchants"])
 global StoryDropdown := aaMainUI.Add("DropDownList", "x968 y53 w150 h180 Choose0 +Center", ["Common Egg", "Spotted Egg", "Iceshard Egg", "Spikey Egg", "Magma Egg", "Crystal Egg", "Lunar Egg", "Void Egg", "Hell Egg", "Nightmare Egg", "Rainbow Egg"])
 global LegendDropDown := aaMainUI.Add("DropDownlist", "x968 y53 w150 h180 Choose0 +Center", ["Coins, Gems", "Eggs", "Bubbles"] )
+
+global EnchantsDropdown := aaMainUI.Add("DropDownlist", "x960 y53 w100 h180 Choose0 +Center", ["Teamup IV", "Team up V", "Looter IV", "Looter V", "Bubbler IV", "Bubbler V", "Gleaming III"] )
+global EnchantModeDropdown := aaMainUI.Add("DropDownList", "x1062 y53 w70 h180 Choose0 +Center", ["Gems", "Rerolls"])
+
+global AutoAbilityBox := aaMainUI.Add("CheckBox", "x805 y410 cffffff Checked", "Auto-claim Chest and ticket (Only for Coins and Gems)")
+global VIPChestBox := aaMainUI.Add("CheckBox", "x805 y390 cffffff Checked", "Auto-claim VIP chest (Autoclaim chest enabled required)")
+global EnchantTierBox := aaMainUI.Add("CheckBox", "x805 y370 cffffff Checked", "Stops at 1 tier lower? (Not for Gleaming III)")
+
 global RaidDropdown := aaMainUI.Add("DropDownList", "x968 y53 w150 h180 Choose0 +Center", ["Sacred Planet", "Strange Town", "Ruined City"])
 global RaidActDropdown := aaMainUI.Add("DropDownList", "x1128 y53 w80 h180 Choose0 +Center", ["Act 1", "Act 2", "Act 3", "Act 4", "Act 5"])
 global InfinityCastleDropdown := aaMainUI.Add("DropDownList", "x968 y53 w80 h180 Choose0 +Center", ["Normal", "Hard"])
@@ -247,6 +253,8 @@ global ContractPageDropdown := aaMainUI.Add("DropDownList", "x968 y53 w80 h180 C
 global ContractJoinDropdown := aaMainUI.Add("DropDownList", "x1057 y53 w120 h180 Choose0 +Center", ["Creating", "Joining","Matchmaking"])
 global ConfirmButton := aaMainUI.Add("Button", "x1218 y53 w80 h25", "Confirm")
 
+EnchantModeDropdown.Visible := false
+EnchantsDropdown.Visible := false
 StoryDropdown.Visible := false
 LegendDropDown.Visible := false
 RaidDropdown.Visible := false

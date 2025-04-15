@@ -272,7 +272,184 @@ Saving Webhook Configuration
 Saving Webhook Configuration 
 
 ==Mejt's BGS Infinity v0==
-  Start Time: [18h.33m.07s]
+  Start Time: [19h.45m.48s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [19h.45m.55s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [19h.46m.08s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [19h.47m.29s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [19h.47m.57s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.03m.39s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.06m.14s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.06m.32s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.07m.15s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.07m.36s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.07m.46s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.07m.47s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.07m.53s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.08m.01s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.08m.14s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.08m.20s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.08m.29s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.10m.04s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [20h.10m.17s]
+Please select a gamemode before starting the macro! 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.16m.16s]
+Selected Reroll Enchants mode 
+Found Looter V 
+Found Looter V 
+Found Looter V 
+Found Looter V 
+Found Looter V 
+Found Looter V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.23m.32s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.26m.52s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.31m.54s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.32m.00s]
+Selected Reroll Enchants mode 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.35m.06s]
+Selected Reroll Enchants mode 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.37m.57s]
+Selected Reroll Enchants mode 
+Found Bubbler IV 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.38m.17s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.45m.27s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.59m.31s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [21h.59m.56s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.06m.35s]
+Selected Reroll Enchants mode 
+Found Looter V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.08m.06s]
+Selected Reroll Enchants mode 
+Macro Paused 
+Macro Resumed 
+Found Bubbler V 
+Macro Paused 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.09m.04s]
+Selected Reroll Enchants mode 
+Found Bubbler V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.09m.22s]
+Selected Reroll Enchants mode 
+Found Bubbler V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.09m.33s]
+Selected Reroll Enchants mode 
+Stopping at Bubbler IV, due to being 1 tier lower 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.09m.52s]
+Selected Reroll Enchants mode 
+Found Bubbler V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.10m.08s]
+Selected Reroll Enchants mode 
+Found Bubbler V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.11m.12s]
+Selected Reroll Enchants mode 
+Found Bubbler V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.11m.47s]
+Selected Reroll Enchants mode 
+Found Bubbler V 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.12m.14s]
+Selected Reroll Enchants mode 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.12m.26s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.13m.31s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.13m.35s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.14m.06s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.14m.32s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.14m.37s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.14m.38s]
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.20m.58s]
 Saving Webhook Configuration 
 Saving Webhook Configuration 
-Saving Webhook Configuration 
+
+==Mejt's BGS Infinity v0==
+  Start Time: [22h.22m.06s]
